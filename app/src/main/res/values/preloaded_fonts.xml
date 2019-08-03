@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/archivo_black</item>
+        <item>@font/archivo_narrow_bold</item>
+        <item>@font/cabin_bold</item>
+        <item>@font/fira_sans_extrabold</item>
+        <item>@font/heebo_black</item>
+        <item>@font/heebo_medium</item>
+        <item>@font/hind_madurai_bold</item>
+        <item>@font/josefin_sans_bold</item>
+        <item>@font/karla</item>
+        <item>@font/karla_bold</item>
+        <item>@font/montserrat</item>
+        <item>@font/montserrat_bold</item>
+        <item>@font/noto_sans_bold</item>
+        <item>@font/noto_serif_bold</item>
+        <item>@font/noto_serif_bold_italic</item>
+        <item>@font/open_sans_bold</item>
+        <item>@font/open_sans_semibold</item>
+        <item>@font/poppins_bold</item>
+        <item>@font/poppins_medium</item>
+        <item>@font/questrial</item>
+        <item>@font/raleway_bold</item>
+        <item>@font/raleway_extrabold</item>
+        <item>@font/roboto_black</item>
+        <item>@font/source_sans_pro</item>
+        <item>@font/source_sans_pro_black</item>
+    </array>
+</resources>
