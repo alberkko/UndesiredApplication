@@ -15,12 +15,13 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.alber.undesiredapplication.model.Buildings;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -34,12 +35,9 @@ import com.example.alber.undesiredapplication.R;
 
 public class UploadActivity extends AppCompatActivity {
 
-
-
-
-
     private static final int PICK_IMAGE_REQUEST = 1;
 
+    private Button mChoseonMapBtn;
     private Button mButtonChooseImage;
     private Button mButtonUpload;
     private TextView mTextViewShowUploads;
@@ -49,17 +47,25 @@ public class UploadActivity extends AppCompatActivity {
     private EditText mEditTextAddress;
     private EditText mEditTextDescription;
     private EditText mEditTextCategory;
-    private EditText mEditTextLong;
-    private EditText mEditTextLat;
     private Uri mImageUri;
     private StorageReference mStorageRef;
     private DatabaseReference mDatabaseRef;
     private StorageTask mUploadTask;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mCurrentUser;
+    private DatabaseReference mDatabaseUser;
+    public double longt;
+    public double lat;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+         mAuth = FirebaseAuth.getInstance();
+         mCurrentUser = mAuth.getCurrentUser();
+         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
 
         getSupportActionBar().hide(); //<< this
 
@@ -71,20 +77,17 @@ public class UploadActivity extends AppCompatActivity {
         mEditTextAddress = findViewById(R.id.address_editText3);
         mEditTextDescription = findViewById(R.id.desc_editText4);
         mEditTextCategory = findViewById(R.id.category_editText);
-        mEditTextLong = findViewById(R.id.long_editText3);
-        mEditTextLat = findViewById(R.id.lat_editText2);
         mImageView = findViewById(R.id.uploadedImgPreview);
         mProgressBar = findViewById(R.id.progressBar);
+        mChoseonMapBtn = findViewById(R.id.onMap_btn);
         mStorageRef = FirebaseStorage.getInstance().getReference("Buildings");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Buildings");
-
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openFileChooser();
             }
         });
-
         mButtonUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,6 +107,22 @@ public class UploadActivity extends AppCompatActivity {
                 openImagesActivity();
             }
         });
+
+        mChoseonMapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openChoseonMapActivity();
+            }
+        });
+
+
+      Bundle b = getIntent().getExtras();
+        if (b != null) {
+            longt = b.getDouble("latpos");
+            lat = b.getDouble("longpos");
+        }
+
+
     }
 
     private void openFileChooser() {
@@ -132,7 +151,7 @@ public class UploadActivity extends AppCompatActivity {
     }
 
     private void uploadFile() {
-        if (mImageUri != null  && mEditTextFileName != null  && mEditTextAddress != null && mEditTextDescription != null && mEditTextCategory != null ) {
+        if (mImageUri != null && mEditTextFileName != null && mEditTextAddress != null && mEditTextDescription != null && mEditTextCategory != null) {
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
 
@@ -151,19 +170,17 @@ public class UploadActivity extends AppCompatActivity {
                             Toast.makeText(UploadActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
 
                             Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-                            while (!urlTask.isSuccessful());
+                            while (!urlTask.isSuccessful()) ;
                             Uri downloadUrl = urlTask.getResult();
-
-                            double latitude= Double.parseDouble(mEditTextLat.getText().toString().trim());
-                            double longt = Double.parseDouble(mEditTextLong.getText().toString().trim());
 
                             Buildings upload;
                             upload = new Buildings(mEditTextFileName.getText().toString().trim(), downloadUrl.toString(),
                                     mEditTextAddress.getText().toString(), mEditTextDescription.getText().toString(),
-                                    mEditTextCategory.getText().toString(),latitude, longt);
+                                    mEditTextCategory.getText().toString(), longt, lat, mAuth.getUid());
 
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
+
 
                         }
                     })
@@ -191,4 +208,10 @@ public class UploadActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void openChoseonMapActivity() {
+        Intent intent = new Intent(this, ChoseonMapActivity.class);
+        startActivity(intent);
+    }
+
 }
+

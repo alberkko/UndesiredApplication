@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.alber.undesiredapplication">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -18,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".activities.UserProfileActivity"></activity>
+        <activity android:name=".activities.ChoseonMapActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,19 +33,18 @@
 
         <activity
             android:name=".activities.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".activities.RegisterActivity"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity android:name=".activities.RegisterActivity" />
         <activity android:name=".activities.LoginActivity"></activity>
         <activity android:name=".activities.ProfileActivity2" />
-        <activity android:name=".activities.UploadActivity">
+        <activity android:name=".activities.UploadActivity"></activity>
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity"></activity>
-        <activity android:name=".activities.ProfileActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

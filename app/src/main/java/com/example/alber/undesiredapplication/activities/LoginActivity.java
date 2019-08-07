@@ -41,10 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Auth = FirebaseAuth.getInstance();
-
-
         LoginProgress = new ProgressDialog(this);
-
         UserDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
         LoginEmail = (EditText) findViewById(R.id.email);
@@ -62,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
             });
-
 
 
         Login_btn.setOnClickListener(new View.OnClickListener() {

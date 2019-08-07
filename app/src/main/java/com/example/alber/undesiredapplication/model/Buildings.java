@@ -12,12 +12,14 @@ public class Buildings {
     private String mKey;
     public double  latitude;
     public double  longitude;
+    private String userID;
+
 
     public Buildings() {
 
         }
 
-    public Buildings(String name, String image_url, String address, String description, String categorie, double latitude, double longitude) {
+    public Buildings(String name, String image_url, String address, String description, String categorie, double latitude, double longitude, String userID) {
         if (name.trim().equals("")) {
             name = "No Name";
         }
@@ -29,6 +31,7 @@ public class Buildings {
         this.categorie = categorie;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.userID = userID;
     }
 
     public String getName() {
@@ -59,6 +62,15 @@ public class Buildings {
         return longitude;
     }
 
+    public String getUserID() {
+        return userID;
+    }
+
+
+
+
+
+
     public void setName(String name) {
         this.name = name;
     }
@@ -86,6 +98,12 @@ public class Buildings {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
 
     @Exclude
     public String getKey() {

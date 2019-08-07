@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="My profile"
+            android:onClick="profile"
+            />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_map_black_24dp"
+            android:title="View all buildings on Map"
+            android:onClick="map"
+            />
+        <item
+            android:id="@+id/nav_add"
+            android:icon="@drawable/ic_add_black_24dp"
+            android:title="Add a building"
+            android:onClick="add"
+            />
+
+
+    </group>
+
+    <group>
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_info_outline_black_24dp"
+            android:title="About the project" />
+    </group>
+
+</menu>

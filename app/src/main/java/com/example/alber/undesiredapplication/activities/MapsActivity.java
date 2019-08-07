@@ -29,6 +29,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ChildEventListener mChildEventListener;
     private DatabaseReference mUsers;
     Marker marker;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         ChildEventListener mChildEventListener;
         mUsers= FirebaseDatabase.getInstance().getReference("Buildings");
         mUsers.push().setValue(marker);
+
     }
 
     @Override
@@ -51,13 +55,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(41.3275,19.81870), 13.0f    ));
 
+
         mUsers.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot s : dataSnapshot.getChildren()){
                     Buildings building = s.getValue(Buildings.class);
                     LatLng location=new LatLng(building.latitude,building.longitude);
-                    mMap.addMarker(new MarkerOptions().position(location).title(building.getName())).setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    mMap.addMarker(new MarkerOptions().position(location).title(building.getName())).
+                            setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                 }
             }
 
