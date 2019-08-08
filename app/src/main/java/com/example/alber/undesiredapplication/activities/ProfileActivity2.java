@@ -104,7 +104,7 @@ public class ProfileActivity2 extends AppCompatActivity implements OnMapReadyCal
         String Stringtodoublelat = Double.toString(lat);
         String Stringtodoublelongt = Double.toString(longt);
 
-        //limit the number of digits to 8 so it looks nice
+        //limit the number of digits to 7 so it looks nice
         String cutStringLat = Stringtodoublelat.substring(0,7);
         String cutStringLong = Stringtodoublelongt.substring(0,7);
 

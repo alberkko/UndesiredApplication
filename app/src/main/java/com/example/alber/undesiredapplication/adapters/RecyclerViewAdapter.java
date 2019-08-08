@@ -13,11 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.bumptech.glide.Glide;
 import com.example.alber.undesiredapplication.R;
-import com.example.alber.undesiredapplication.activities.MainActivity;
 import com.example.alber.undesiredapplication.model.Buildings;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -112,6 +108,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mUploads.size();
     }
 
+
+
+
     public class ImageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener,
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
 
@@ -131,7 +130,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
         }
-
 
         @Override
         public boolean onMenuItemClick(MenuItem item) {

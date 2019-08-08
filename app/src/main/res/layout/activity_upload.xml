@@ -17,12 +17,6 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/onMap_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Chose location on Map" />
-
-            <Button
                 android:id="@+id/chose_image_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

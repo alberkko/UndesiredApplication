@@ -63,16 +63,12 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemClickListener(UserProfileActivity.this);
         mUsername = findViewById(R.id.username_aa);
-
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
 
-
         String CurrentUserId = mAuth.getCurrentUser().getUid();
         mDatabaseCurrentUser = FirebaseDatabase.getInstance().getReference().child("Buildings");
-
         mQueryCurrentUser = mDatabaseCurrentUser.orderByChild("userID").equalTo(CurrentUserId);
-
         mDBListener = mQueryCurrentUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -112,9 +108,6 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
             }
         });
 
-
-
-
         FloatingActionButton fab = findViewById(R.id.floatingActionButton);
         fab.setOnClickListener(new View.OnClickListener()
         {
@@ -124,10 +117,6 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
                 startActivity(new Intent(getApplicationContext(), ChoseonMapActivity.class));
             }
         });
-
-
-
-
     }
 
 
@@ -143,7 +132,6 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         final String desc = selectedItem.getDescription();
         final String categ = selectedItem.getCategorie();
 
-
         Intent mainIntent = new Intent(UserProfileActivity.this, ProfileActivity2.class);
         mainIntent.putExtra("b_name", name);
         mainIntent.putExtra("b_address", address);
@@ -151,7 +139,6 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         mainIntent.putExtra("b_userId", uid);
         mainIntent.putExtra("b_desc", desc);
         mainIntent.putExtra("b_categ", categ);
-
 
         Bundle b = new Bundle();
         b.putDouble("longt", longt);
@@ -190,12 +177,6 @@ public class UserProfileActivity extends AppCompatActivity implements RecyclerVi
         Intent startIntent = new Intent(UserProfileActivity.this, MainActivity.class);
         startActivity(startIntent);
         finish();
-    }
-
-    private void openChoseMapActivity() {
-        Intent intent = new Intent(this, ChoseonMapActivity.class);
-        startActivity(intent);
-
     }
 
 }

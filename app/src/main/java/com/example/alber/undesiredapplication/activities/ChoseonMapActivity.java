@@ -88,13 +88,7 @@ public class ChoseonMapActivity extends AppCompatActivity implements OnMapReadyC
                 longpos = point.longitude;
             }
         });
-
-
-
-
     }
-
-
 
     private void openUploadActivity() {
         Intent intent = new Intent(this, UploadActivity.class);

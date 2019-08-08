@@ -79,7 +79,6 @@ public class UploadActivity extends AppCompatActivity {
         mEditTextCategory = findViewById(R.id.category_editText);
         mImageView = findViewById(R.id.uploadedImgPreview);
         mProgressBar = findViewById(R.id.progressBar);
-        mChoseonMapBtn = findViewById(R.id.onMap_btn);
         mStorageRef = FirebaseStorage.getInstance().getReference("Buildings");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Buildings");
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -108,21 +107,11 @@ public class UploadActivity extends AppCompatActivity {
             }
         });
 
-        mChoseonMapBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openChoseonMapActivity();
-            }
-        });
-
-
       Bundle b = getIntent().getExtras();
         if (b != null) {
             longt = b.getDouble("latpos");
             lat = b.getDouble("longpos");
         }
-
-
     }
 
     private void openFileChooser() {
@@ -181,7 +170,6 @@ public class UploadActivity extends AppCompatActivity {
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
 
-
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -205,11 +193,6 @@ public class UploadActivity extends AppCompatActivity {
 
     private void openImagesActivity() {
         Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void openChoseonMapActivity() {
-        Intent intent = new Intent(this, ChoseonMapActivity.class);
         startActivity(intent);
     }
 
