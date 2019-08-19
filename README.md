@@ -1,3 +1,3 @@
 # UndesiredApplication
 
-Application no one desires
+Native Android information and mapping system.
